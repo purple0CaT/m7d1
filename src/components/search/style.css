@@ -29,3 +29,19 @@
   height: 5rem !important;
   width: 100%;
 }
+.navBtns {
+  border-radius: 50%;
+  transition: 0.2s;
+  height: 2rem;
+  aspect-ratio: 1/1;
+  cursor: pointer;
+  box-shadow: 0 0 2px grey;
+}
+.navBtns:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 5px grey;
+}
+.navBtns:active {
+  transform: scale(1);
+  box-shadow: 0 0 15px white;
+}
