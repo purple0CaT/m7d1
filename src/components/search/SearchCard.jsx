@@ -24,20 +24,31 @@ export default function SearchCard({ data, setPicked }) {
             }}
           />
           <div className="px-2 py-1 cardBody d-flex flex-column">
-            <h6 className="text-dark">{data.title}</h6>
-            <p>
-              <small> Job Type: </small>
-              {data.job_type}
-            </p>
+            <div className="text-right">
+              <h6 className="text-dark">{data.title}</h6>
+            </div>
+            {/* LIST P infos */}
+            <small className="text-muted">
+              company:{" "}
+              <span className="text-dark font-weight-bold">
+                {data.company_name}
+              </span>
+            </small>
+            <small className="text-muted">
+              Job Type:{" "}
+              <span className="text-dark font-weight-bold">
+                {data.job_type}
+              </span>
+            </small>
             <small className="text-muted">
               Location:{" "}
-              <span className="text-dark">
+              <span className="text-dark font-weight-bold">
                 {data.candidate_required_location}
               </span>
             </small>
             <small>
               {" "}
-              <span className="text-dark">
+              <span className="text-muted float-right mt-1">
                 {dateFormat(data.publication_date, "mmm d, yyyy")}
               </span>
             </small>

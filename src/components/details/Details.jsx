@@ -23,7 +23,7 @@ export default function Details({ data, setPicked }) {
   };
   //
   useEffect(() => {
-    console.log(data);
+    // console.log(data);
 
     // fetchDetails(id);
   }, []);
@@ -63,26 +63,33 @@ export default function Details({ data, setPicked }) {
                   </small>
                 </div>
                 <h5>
-                  <Link to={`/search/${data.company_name}`}>
-                    {" "}
-                    <small className="text-muted">
-                      company: {data.company_name}
-                    </small>{" "}
-                  </Link>
+                  {" "}
+                  <small className="text-muted">
+                    company:{" "}
+                    <Link
+                      to={`/search?company=${data.company_name}`}
+                      className="link linkClr"
+                    >
+                      <span>{data.company_name}</span>
+                    </Link>
+                  </small>{" "}
                 </h5>
               </div>
               <div className="d-flex justify-content-between align-items-center detailBox mb-2">
-                <p>
+                <span>
                   <small className="text-muted">type: </small> {data.job_type}
-                </p>
-                <p>
+                </span>
+                <span>
                   <small className="text-muted">category: </small>{" "}
-                  {data.category}
-                </p>
-                <p>
+                  <Link to={`/search?category=${data.category}`}>
+                    {" "}
+                    <span className="link linkClr">{data.category}</span>
+                  </Link>
+                </span>
+                <span>
                   <small className="text-muted">location: </small>
                   {data.candidate_required_location}
-                </p>
+                </span>
               </div>
 
               <div className="detailBox">

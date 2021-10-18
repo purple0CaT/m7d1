@@ -10,14 +10,27 @@ export default function SearchPage({ searchQuery, setSearch, setPicked }) {
   const [Loading, setLoading] = useState(true);
   const [Page, setPage] = useState(0);
   const params = useLocation();
+  // URL checker
+  const urlCheck = (query) => {
+    // console.log(query);
+    const params = new URLSearchParams(window.location.search);
+    let skip = Page * 8;
+    let title = query ? `&title=${query}` : "";
+    let company = params.has("company")
+      ? `&company=${params.get("company")}`
+      : "";
+    let category = params.has("category")
+      ? `&category=${params.get("category")}`
+      : "";
+    //
+    let url = `${process.env.REACT_APP_URLFETCH}/jobs?limit=8&skip=${skip}${title}${company}${category}
+    `;
+    return url;
+  };
   // FETCH
   const searchFetch = async (query) => {
-    let company = params.pathname.split("/").reverse();
+    let url = urlCheck(query);
     setLoading(true);
-    let skip = Page * 8;
-    let url = `${process.env.REACT_APP_URLFETCH}/jobs?limit=8&skip=${skip}&${
-      company.length > 2 ? `company=${company[0]}` : `title=${query}`
-    }`;
     try {
       const res = await fetch(url);
       if (res.ok) {
@@ -39,6 +52,10 @@ export default function SearchPage({ searchQuery, setSearch, setPicked }) {
     }
   };
   // renew
+  // useEffect(() => {
+  //   console.log(searchQuery);
+  //   urlCheck(searchQuery);
+  // }, [searchQuery]);
   useEffect(() => {
     searchFetch(searchQuery);
   }, [searchQuery, Page]);
