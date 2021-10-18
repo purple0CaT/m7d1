@@ -7,6 +7,9 @@
   position: relative;
   transition: 0.2s;
   border: 1px solid rgba(128, 128, 128, 0.199);
+  background-color: white !important;
+  border-radius: 10px;
+  overflow: hidden;
 }
 .searchcard:hover {
   text-decoration: none;

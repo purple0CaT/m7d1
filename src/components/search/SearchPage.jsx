@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Container, Row } from "react-bootstrap";
+import { Col, Container, Row, Spinner } from "react-bootstrap";
 import SearchCard from "./SearchCard";
 import "./style.css";
 
-export default function SearchPage({ searchQuery, setSearch ,setPicked}) {
+export default function SearchPage({ searchQuery, setSearch, setPicked }) {
   const [SearchData, setSearchData] = useState([]);
+  const [Loading, setLoading] = useState(true);
   // FETCH
   const searchFetch = async (query) => {
     let url = `${process.env.REACT_APP_URLFETCH}/jobs?limit=10&skip=0&search=${query} `;
@@ -12,7 +13,8 @@ export default function SearchPage({ searchQuery, setSearch ,setPicked}) {
       const res = await fetch(url);
       if (res.ok) {
         const data = await res.json();
-        setSearchData(data);
+        await setSearchData(data);
+        setLoading(false);
       }
     } catch (error) {
       console.log(error);
@@ -25,21 +27,29 @@ export default function SearchPage({ searchQuery, setSearch ,setPicked}) {
   //   clean
   useEffect(() => {
     return () => {
-      setSearch('');
+      setSearch("");
     };
   }, []);
   return (
-    <Container>
+    <Container className="w-100">
       <br />
       <div className="p-2 text-muted">
         <h4>...search by: {searchQuery}</h4>
       </div>
       <Row>
-        {SearchData?.data &&
-          SearchData.data.map((cart) => (
-            <SearchCard data={cart} key={cart._id} setPicked={setPicked}/>
-          ))}
-      </Row>{" "}
+        {Loading ? (
+          <Col xs="12 text-center">
+            <Spinner animation="border" />
+          </Col>
+        ) : (
+          <>
+            {SearchData?.data &&
+              SearchData.data.map((cart) => (
+                <SearchCard data={cart} key={cart._id} setPicked={setPicked} />
+              ))}
+          </>
+        )}
+      </Row>
     </Container>
   );
 }

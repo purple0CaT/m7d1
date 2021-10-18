@@ -24,7 +24,10 @@ export default function Navbar({ search, setSearch }) {
               <AiFillHome size="1.5rem" className="text-muted" />
             </Link>
             <div className="navSearch">
-              <BsSearch className="mx-1" size="1.5rem" />
+              <BsSearch
+                className="mx-1"
+                size="1.5rem"
+              />
               {/* <input type="text" name="" id="" placeholder="...search" /> */}
               <Form.Control
                 value={search}

@@ -3,15 +3,18 @@
 }
 
 .navContainer {
-  background-color: rgb(241, 236, 227);
+  background-color: rgba(192, 229, 229, 0.9);
 }
 .navSearch {
+  position: relative;
   display: flex;
   align-items: center;
   background-color: rgb(170, 170, 170);
   border-radius: 15px;
   padding: 0.1rem;
   color: white;
+  width: 60%;
+  transition: 0.2s;
 }
 .navSearch input {
   border: 0px solid white;
@@ -19,6 +22,9 @@
   color: white;
   max-width: 80%;
   border-radius: 20px;
+}
+.navSearch input:focus {
+  max-width: 100%;
 }
 .navSearch input:focus {
   border: 0px solid black;

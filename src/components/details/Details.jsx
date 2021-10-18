@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import dateFormat from "dateformat";
+import "./style.css";
 
 export default function Details({ data, setPicked }) {
   const [prodDetail, setprodDetail] = useState([]);
@@ -51,20 +52,22 @@ export default function Details({ data, setPicked }) {
               />{" "}
             </Col>
             <Col xs="12" md="8" className="d-flex flex-column">
-              <div className="d-flex justify-content-between">
-                <h4>{data.title}</h4>
-                <small className="text-muted">
-                  published:{" "}
-                  <span className="text-dark">
-                    {dateFormat(data.publication_date, "mmm d, yyyy")}
-                  </span>
-                </small>
+              <div className="detailBox mb-2">
+                <div className="d-flex justify-content-between">
+                  <h4>{data.title}</h4>
+                  <small className="text-muted">
+                    published:{" "}
+                    <span className="text-dark">
+                      {dateFormat(data.publication_date, "mmm d, yyyy")}
+                    </span>
+                  </small>
+                </div>
+                <h5>
+                  <small className="text-muted">company: </small>{" "}
+                  {data.company_name}
+                </h5>
               </div>
-              <h5>
-                <small className="text-muted">company name: </small>{" "}
-                {data.company_name}
-              </h5>
-              <div className="d-flex justify-content-between">
+              <div className="d-flex justify-content-between align-items-center detailBox mb-2">
                 <p>
                   <small className="text-muted">type: </small> {data.job_type}
                 </p>
@@ -78,7 +81,9 @@ export default function Details({ data, setPicked }) {
                 </p>
               </div>
 
-              <small dangerouslySetInnerHTML={{ __html: data.description }} />
+              <div className="detailBox">
+                <small dangerouslySetInnerHTML={{ __html: data.description }} />
+              </div>
             </Col>
           </Row>
         )}
