@@ -1,0 +1,47 @@
+.navBar {
+  padding: 0.2rem 0;
+}
+
+.navContainer {
+  background-color: rgb(241, 236, 227);
+}
+.navSearch {
+  display: flex;
+  align-items: center;
+  background-color: rgb(170, 170, 170);
+  border-radius: 15px;
+  padding: 0.1rem;
+  color: white;
+}
+.navSearch input {
+  border: 0px solid white;
+  background-color: rgb(170, 170, 170);
+  color: white;
+  max-width: 80%;
+  border-radius: 20px;
+}
+.navSearch input:focus {
+  border: 0px solid black;
+  background-color: rgb(170, 170, 170);
+  box-shadow: unset;
+  color: white;
+}
+/* Right side */
+.navBtn {
+  background-color: #aaaaaa;
+  border-radius: 15px;
+  padding: 0.2rem 0.6rem;
+  color: white;
+  transition: 0.15s;
+}
+
+.navBtn:hover {
+  color: white;
+  text-decoration: none;
+  box-shadow: 0 0 10px rgba(128, 128, 128, 0.5);
+  transform: scale(1.02);
+}
+.navBtn:active {
+  transform: scale(1);
+  box-shadow: 0 0 40px rgba(255, 255, 255, 0.871);
+}
