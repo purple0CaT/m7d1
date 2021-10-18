@@ -10,7 +10,7 @@ export default function Navbar({ search, setSearch }) {
   const runSearch = (val) => {
     setSearch(val);
     if (val & (val !== "undefined") || val !== "") {
-      history.push("/search");
+      val.length > 2 && history.push("/search");
     } else {
       history.push("/");
     }
