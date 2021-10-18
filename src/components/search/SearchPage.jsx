@@ -3,16 +3,21 @@ import { Col, Container, Row, Spinner } from "react-bootstrap";
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
 import SearchCard from "./SearchCard";
 import "./style.css";
+import { useLocation } from "react-router-dom";
 
 export default function SearchPage({ searchQuery, setSearch, setPicked }) {
   const [SearchData, setSearchData] = useState([]);
   const [Loading, setLoading] = useState(true);
   const [Page, setPage] = useState(0);
+  const params = useLocation();
   // FETCH
   const searchFetch = async (query) => {
+    let company = params.pathname.split("/").reverse();
     setLoading(true);
     let skip = Page * 8;
-    let url = `${process.env.REACT_APP_URLFETCH}/jobs?limit=8&skip=${skip}&title=${query} `;
+    let url = `${process.env.REACT_APP_URLFETCH}/jobs?limit=8&skip=${skip}&${
+      company.length > 2 ? `company=${company[0]}` : `title=${query}`
+    }`;
     try {
       const res = await fetch(url);
       if (res.ok) {
@@ -29,7 +34,7 @@ export default function SearchPage({ searchQuery, setSearch, setPicked }) {
     setPage(Page + 1);
   };
   const prevFetch = async () => {
-    if (Page >0) {
+    if (Page > 0) {
       setPage(Page - 1);
     }
   };

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import dateFormat from "dateformat";
 import "./style.css";
 
@@ -63,8 +63,12 @@ export default function Details({ data, setPicked }) {
                   </small>
                 </div>
                 <h5>
-                  <small className="text-muted">company: </small>{" "}
-                  {data.company_name}
+                  <Link to={`/search/${data.company_name}`}>
+                    {" "}
+                    <small className="text-muted">
+                      company: {data.company_name}
+                    </small>{" "}
+                  </Link>
                 </h5>
               </div>
               <div className="d-flex justify-content-between align-items-center detailBox mb-2">

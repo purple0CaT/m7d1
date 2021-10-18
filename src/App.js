@@ -20,7 +20,7 @@ function App() {
         <Route path="/" exact render={() => <Home />} />
         <Route
           path="/search"
-          exact
+          strict
           render={(props) => (
             <SearchPage
               searchQuery={Search}
