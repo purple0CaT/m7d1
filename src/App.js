@@ -7,6 +7,7 @@ import { useHistory } from "react-router-dom";
 import SearchPage from "./components/search/SearchPage";
 import Home from "./components/home/Home";
 import Details from "./components/details/Details";
+import Favorites from "./components/favorites/Favorites";
 
 function App() {
   const [Search, setSearch] = useState("");
@@ -18,6 +19,7 @@ function App() {
       <Navbar setSearch={(val) => setSearch(val)} search={Search} />
       <Switch>
         <Route path="/" exact render={() => <Home />} />
+        <Route path="/favorites" exact render={() => <Favorites />} />
         <Route
           path="/search"
           strict

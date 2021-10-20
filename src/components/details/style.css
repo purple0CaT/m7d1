@@ -19,3 +19,14 @@
   border-bottom: 2px solid rgb(123, 170, 170) !important;
   color: teal;
 }
+.bookmark,
+.bookmark svg {
+  border: unset;
+  background-color: white;
+  position: relative;
+  cursor: pointer;
+  transition: 0.2s;
+}
+.bookmark svg:hover {
+  transform: scale(1.2);
+}

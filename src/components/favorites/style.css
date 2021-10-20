@@ -1,0 +1,35 @@
+.favoriteCard {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 20px;
+  padding: 0.5rem 1rem;
+  transition: 0.2s;
+  background-color: white !important;
+}
+.favoriteCard:hover {
+  box-shadow: 0 2px 5px rgba(128, 128, 128, 0.527);
+  transform: scale(1.05);
+}
+
+.link {
+  color: black !important;
+  text-decoration: none;
+}
+.link {
+  text-decoration: none;
+}
+.delete {
+  cursor: pointer;
+  color: gray;
+  transition: 0.1s;
+}
+.delete:hover {
+  color: red !important;
+  transform: scale(1.3);
+}
+.delete:active {
+  color: rgb(134, 0, 0) !important;
+
+  transform: scale(1);
+}

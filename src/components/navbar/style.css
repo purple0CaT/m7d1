@@ -40,20 +40,56 @@
   border-radius: 15px;
   padding: 0.3rem 1rem;
   color: white;
-  transition: 0.15s;
+  transition: 0.2s;
   height: 2rem;
 }
 
 .navBtn:hover {
+  transform: scale(1.02);
+  border-bottom: 3px solid rgb(102, 55, 55);
+  cursor: pointer;
   color: white;
   text-decoration: none;
-  box-shadow: 0 0 10px rgba(128, 128, 128, 0.5);
-  transform: scale(1.02);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.788);
 }
 .navBtn:active {
   transform: scale(1);
-  box-shadow: 0 0 40px rgba(255, 255, 255, 0.871);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.9);
+  border: 0px solid black;
 }
 .selectedNavb {
   border-bottom: 3px solid rgb(102, 55, 55);
+}
+/* .profileName {
+  border-radius: 15px;
+  height: 2rem;
+  background-color: #41797980;
+  color: white;
+  border-radius: 15px;
+  margin: 0 0.5rem 0 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  padding: 0.1rem 1rem;
+  box-shadow: 0 0 15px white;
+  transition: 0.2s;
+} */
+.profileName:hover {
+  transform: scale(1.02);
+  cursor: pointer;
+  border-bottom: 3px solid rgb(102, 55, 55);
+}
+.profileName:active {
+  transform: scale(1);
+  border: unset;
+}
+.nameInput {
+  height: 2rem !important;
+  /* padding: 0 0.2rem !important; */
+  border: 0px solid white !important;
+  background-color: rgb(170, 170, 170) !important;
+  color: white !important;
+  max-width: 7rem;
+  border-radius: 15px !important;
+}
+.nameInput:focus {
+  box-shadow: unset !important;
 }

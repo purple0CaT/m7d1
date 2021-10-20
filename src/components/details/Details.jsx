@@ -2,29 +2,42 @@ import React, { useEffect, useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { Link, useParams } from "react-router-dom";
 import dateFormat from "dateformat";
+import { BsBookmark, BsBookmarkFill } from "react-icons/bs";
 import "./style.css";
+import { connect } from "react-redux";
+import { addToFavorite, deleteOfFavorite } from "../redux/action/action";
 
-export default function Details({ data, setPicked }) {
+const mapStateToProps = (state) => ({ user: state.user });
+const mapDispatchToProps = (dispatch) => ({
+  addFavorite: (company) => {
+    dispatch(addToFavorite(company));
+  },
+  deleteFavorite: (company) => {
+    dispatch(deleteOfFavorite(company));
+  },
+});
+
+const Details = ({ data, setPicked, user, addFavorite, deleteFavorite }) => {
   const [prodDetail, setprodDetail] = useState([]);
   let { id } = useParams();
+  const [Bookmark, setBookmark] = useState(user.favorites);
 
   //
-  const fetchDetails = async (val) => {
-    const url = `${process.env.REACT_APP_URLFETCH}/${val}`;
-    try {
-      const res = await fetch(url);
-      if (res.ok) {
-        const data = await res.json();
-        console.log(data);
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const fetchDetails = async (val) => {
+  //   const url = `${process.env.REACT_APP_URLFETCH}/${val}`;
+  //   try {
+  //     const res = await fetch(url);
+  //     if (res.ok) {
+  //       const data = await res.json();
+  //       console.log(data);
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
   //
   useEffect(() => {
     // console.log(data);
-
     // fetchDetails(id);
   }, []);
   useEffect(() => {
@@ -64,14 +77,32 @@ export default function Details({ data, setPicked }) {
                 </div>
                 <h5>
                   {" "}
-                  <small className="text-muted">
+                  <small className="text-muted d-flex">
                     company:{" "}
                     <Link
                       to={`/search?company=${data.company_name}`}
-                      className="link linkClr"
+                      className="link linkClr mr-1"
                     >
                       <span>{data.company_name}</span>
                     </Link>
+                    {user?.name &&
+                      (!user.favorites.some((c) => c === data.company_name) ? (
+                        <div
+                          className="bookmark"
+                          // value={data.company_name})
+                          onClick={(e) => addFavorite(data.company_name)}
+                        >
+                          <BsBookmark />
+                        </div>
+                      ) : (
+                        <div
+                          className="bookmark"
+                          // value={data.company_name})
+                          onClick={(e) => deleteFavorite(data.company_name)}
+                        >
+                          <BsBookmarkFill />
+                        </div>
+                      ))}
                   </small>{" "}
                 </h5>
               </div>
@@ -101,4 +132,6 @@ export default function Details({ data, setPicked }) {
       </Container>
     </>
   );
-}
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Details);
