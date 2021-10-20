@@ -1,12 +1,17 @@
 import React from "react";
 import { Container } from "react-bootstrap";
+import { connect } from "react-redux";
+const mapStateToProps = (state) => ({ user: state.user });
 
-export default function Home() {
+const Home = ({ user }) => {
   return (
     <div>
       <Container>
-        <h1 className="text-muted my-5">Hello there!</h1>
+        <h1 className="text-muted my-5">
+          Hello {user.name ? user.name : "there"}!
+        </h1>
       </Container>
     </div>
   );
-}
+};
+export default connect(mapStateToProps)(Home);
