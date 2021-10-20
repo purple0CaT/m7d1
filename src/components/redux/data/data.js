@@ -4,6 +4,8 @@ import { userReducer } from "../reducer/reducer";
 export const initialState = {
   user: {
     name: "",
+    image:
+      "https://cdn2.iconfinder.com/data/icons/everything-in-office/65/icon_Ai-11-512.png",
     favorites: [],
   },
 };

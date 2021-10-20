@@ -20,6 +20,7 @@
   text-decoration: none;
 }
 .delete {
+  min-width: 2rem;
   cursor: pointer;
   color: gray;
   transition: 0.1s;

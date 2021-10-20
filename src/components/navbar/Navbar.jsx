@@ -34,8 +34,8 @@ const Navbar = ({ search, setSearch, addName, history, user }) => {
       <Container>
         <Row className="navBar">
           <Col xs="12" md="4" className="d-flex align-items-center my-1">
-            <Link to="/" className="mr-3">
-              <AiFillHome size="1.5rem" className="text-muted" />
+            <Link to="/" className="mr-3 navIcon">
+              <AiFillHome size="1.8rem" className="" />
             </Link>
             <div className="navSearch">
               <BsSearch className="mx-1" size="1.5rem" />
@@ -83,9 +83,14 @@ const Navbar = ({ search, setSearch, addName, history, user }) => {
                 >
                   <span className="text-dropdown">Favorites</span>
                 </NavLink>
-                <div className="navBtn profileName d-flex align-items-center mr-2">
+                <NavLink
+                  exact
+                  to="/profile"
+                  activeClassName="selectedNavb"
+                  className="navBtn profileName d-flex align-items-center mr-2"
+                >
                   <h5 className="my-0">{user.name}</h5>
-                </div>
+                </NavLink>
               </>
             )}
           </Col>

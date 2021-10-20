@@ -8,6 +8,7 @@ import SearchPage from "./components/search/SearchPage";
 import Home from "./components/home/Home";
 import Details from "./components/details/Details";
 import Favorites from "./components/favorites/Favorites";
+import Profile from "./components/profile/Profile";
 
 function App() {
   const [Search, setSearch] = useState("");
@@ -41,6 +42,11 @@ function App() {
               setPicked={(val) => setPicked(val)}
             />
           )}
+        />
+        <Route
+          path="/profile"
+          exact
+          render={(routerProps) => <Profile />}
         />
         <Route
           render={() => (

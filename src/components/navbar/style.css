@@ -40,7 +40,7 @@
   border-radius: 15px;
   padding: 0.3rem 1rem;
   color: white;
-  transition: 0.2s;
+  transition: 0.1s;
   height: 2rem;
 }
 
@@ -59,6 +59,27 @@
 }
 .selectedNavb {
   border-bottom: 3px solid rgb(102, 55, 55);
+}
+/* NAV ICON */
+.navIcon {
+  position: relative;
+  color: #aaaaaa;
+}
+.navIcon svg {
+  transition: 0.1s;
+  color: #aaaaaa;
+}
+.navIcon svg:hover {
+  transform: scale(1.2);
+  border-bottom: 2px solid rgb(102, 55, 55);
+  border-radius: 2px;
+  cursor: pointer;
+  color: rgba(71, 71, 71, 0.8) !important;
+  text-decoration: none;
+}
+.navIcon svg:active {
+  transform: scale(1);
+  border: 0px solid black;
 }
 /* .profileName {
   border-radius: 15px;
