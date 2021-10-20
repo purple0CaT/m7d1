@@ -74,7 +74,7 @@ const Navbar = ({ search, setSearch, addName, history, user }) => {
               />
             ) : (
               <>
-                {" "}
+                <div className="separator mr-2"> </div>
                 <NavLink
                   className="d-flex align-items-center navBtn font-weight-bold mr-2"
                   exact
@@ -83,7 +83,7 @@ const Navbar = ({ search, setSearch, addName, history, user }) => {
                 >
                   <span className="text-dropdown">Favorites</span>
                 </NavLink>
-                <div className="navBtn profileName d-flex align-items-center">
+                <div className="navBtn profileName d-flex align-items-center mr-2">
                   <h5 className="my-0">{user.name}</h5>
                 </div>
               </>

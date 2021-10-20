@@ -45,7 +45,7 @@
 }
 
 .navBtn:hover {
-  transform: scale(1.02);
+  transform: scale(1.04);
   border-bottom: 3px solid rgb(102, 55, 55);
   cursor: pointer;
   color: white;
@@ -73,7 +73,7 @@
   transition: 0.2s;
 } */
 .profileName:hover {
-  transform: scale(1.02);
+  transform: scale(1.04);
   cursor: pointer;
   border-bottom: 3px solid rgb(102, 55, 55);
 }
@@ -92,4 +92,9 @@
 }
 .nameInput:focus {
   box-shadow: unset !important;
+}
+
+.separator {
+  height: 100%;
+  border: 1px solid rgba(128, 128, 128, 0.37);
 }

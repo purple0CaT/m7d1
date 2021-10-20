@@ -21,10 +21,10 @@ function Favorites({ user, history, deleteFavorite }) {
   return (
     <Container>
       <br />
-      <Row className="mt-3">
-        {user.favorites &&
+      <Row className="mt-3 flex-column">
+        {user.favorites.length > 0 ? (
           user.favorites.map((f) => (
-            <Col xs="12" md="3">
+            <Col xs="12" md="3" className='my-1'>
               <div className="favoriteCard d-flex justify-content-between">
                 <Link to={`/search?company=${f}`} className="link">
                   <div>
@@ -39,7 +39,13 @@ function Favorites({ user, history, deleteFavorite }) {
                 />
               </div>
             </Col>
-          ))}
+          ))
+        ) : (
+          <Col xs="12" className="text-center text-muted">
+            {" "}
+            <h4>No favorites</h4>
+          </Col>
+        )}
       </Row>
     </Container>
   );
