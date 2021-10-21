@@ -35,6 +35,12 @@ export const searchReducer = (state = initialState.search, action) => {
         ...state,
         loading: action.payload,
       };
+    case "SET_ERROR":
+      return {
+        ...state,
+        error: action.payload,
+        data: [],
+      };
     default:
       return state;
   }

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Col, Container, Row, Spinner } from "react-bootstrap";
+import { Col, Container, Row, Spinner, Alert } from "react-bootstrap";
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
 import SearchCard from "./SearchCard";
 import "./style.css";
@@ -67,7 +67,11 @@ const SearchPage = ({ search, searchNow, setPage, setPicked, cleanUp }) => {
         </div>
       </div>
       <Row>
-        {search.loading ? (
+        {search.error ? (
+          <Alert key={123} variant="danger" className="mx-auto">
+            {search.error}{" "}
+          </Alert>
+        ) : search.loading ? (
           <Col xs="12 text-center">
             <Spinner animation="border" />
           </Col>

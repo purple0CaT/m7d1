@@ -47,16 +47,37 @@ export const searchBy = (value) => {
           type: "SET_LOADING",
           payload: false,
         });
+      } else {
+        console.log(res);
+        dispatch({
+          type: "SET_LOADING",
+          payload: false,
+        });
+        dispatch({
+          type: "SET_ERROR",
+          payload: `${res.status}, ${res.statusText}!`,
+        });
+        setTimeout(() => {
+          dispatch({
+            type: "SET_ERROR",
+            payload: "",
+          });
+        }, 3000);
       }
     } catch (error) {
       dispatch({
         type: "SET_LOADING",
         payload: false,
       });
+      dispatch({
+        type: "SET_ERROR",
+        payload: error,
+      });
       console.log(error);
     }
   };
 };
+// CHANGE PAGE NUM
 export const setUpPage = (value) => {
   return async (dispatch, getState) => {
     dispatch({

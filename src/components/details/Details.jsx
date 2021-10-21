@@ -11,7 +11,10 @@ import {
   setSearch,
 } from "../redux/action/action";
 
-const mapStateToProps = (state) => ({ user: state.user });
+const mapStateToProps = (state) => ({
+  user: state.user,
+  sData: state.search.data.data,
+});
 const mapDispatchToProps = (dispatch) => ({
   addFavorite: (company) => {
     dispatch(addToFavorite(company));
@@ -23,20 +26,25 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(setSearch(query));
   },
 });
-
+// JSX
 const Details = ({
-  data,
   setPicked,
   user,
   addFavorite,
   deleteFavorite,
   setSearch,
+  sData,
 }) => {
+  // CONST
   const [prodDetail, setprodDetail] = useState([]);
   let { id } = useParams();
   const [Bookmark, setBookmark] = useState(user.favorites);
-  //
-  useEffect(() => {}, []);
+  // DATA 
+  const data = sData.filter((x) => x._id === id)[0];
+  // RENEW
+  useEffect(() => {
+    console.log(sData.filter((x) => x._id === id));
+  }, []);
   useEffect(() => {
     return () => {
       setPicked(null);
