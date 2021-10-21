@@ -32,14 +32,14 @@ const SearchPage = ({ search, searchNow, setPage, setPicked, cleanUp }) => {
       setPage(search.page - 1);
     }
   };
-  //
+  // RENEW
   useEffect(() => {
     searchNow();
   }, [search.searchQuery, search.page]);
-  //   clean
+  //   CLEAN UP
   useEffect(() => {
     return () => {
-      cleanUpAct();
+      cleanUp();
     };
   }, []);
   return (
@@ -67,7 +67,7 @@ const SearchPage = ({ search, searchNow, setPage, setPicked, cleanUp }) => {
         </div>
       </div>
       <Row>
-        {Loading ? (
+        {search.loading ? (
           <Col xs="12 text-center">
             <Spinner animation="border" />
           </Col>

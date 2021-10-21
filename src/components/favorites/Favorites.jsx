@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
-import { deleteOfFavorite } from "../redux/action/action";
+import { deleteOfFavorite, setSearch } from "../redux/action/action";
 import { BiTrashAlt } from "react-icons/bi";
 import "./style.css";
 import { Link } from "react-router-dom";
@@ -13,8 +13,11 @@ const mapDispatchToProps = (dispatch) => ({
   deleteFavorite: (company) => {
     dispatch(deleteOfFavorite(company));
   },
+  setSearchIt: (query) => {
+    dispatch(setSearch(query));
+  },
 });
-function Favorites({ user, history, deleteFavorite }) {
+function Favorites({ user, history, deleteFavorite, setSearchIt }) {
   useEffect(() => {
     !user.name && history.push("/");
   }, []);
@@ -24,9 +27,15 @@ function Favorites({ user, history, deleteFavorite }) {
       <Row className="mt-3 flex-column">
         {user.favorites.length > 0 ? (
           user.favorites.map((f) => (
-            <Col xs="12" md="3" className='my-1'>
+            <Col xs="12" md="3" className="my-1">
               <div className="favoriteCard d-flex justify-content-between">
-                <Link to={`/search?company=${f}`} className="link">
+                <Link
+                  to={`/search?company=${f}`}
+                  className="link"
+                  onClick={() => {
+                    setSearchIt({ type: "company", query: f });
+                  }}
+                >
                   <div>
                     <h6 className="m-0">
                       <small> company: </small> {f}

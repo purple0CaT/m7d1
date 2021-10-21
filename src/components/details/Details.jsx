@@ -5,7 +5,11 @@ import dateFormat from "dateformat";
 import { BsBookmark, BsBookmarkFill } from "react-icons/bs";
 import "./style.css";
 import { connect } from "react-redux";
-import { addToFavorite, deleteOfFavorite } from "../redux/action/action";
+import {
+  addToFavorite,
+  deleteOfFavorite,
+  setSearch,
+} from "../redux/action/action";
 
 const mapStateToProps = (state) => ({ user: state.user });
 const mapDispatchToProps = (dispatch) => ({
@@ -15,31 +19,24 @@ const mapDispatchToProps = (dispatch) => ({
   deleteFavorite: (company) => {
     dispatch(deleteOfFavorite(company));
   },
+  setSearch: (query) => {
+    dispatch(setSearch(query));
+  },
 });
 
-const Details = ({ data, setPicked, user, addFavorite, deleteFavorite }) => {
+const Details = ({
+  data,
+  setPicked,
+  user,
+  addFavorite,
+  deleteFavorite,
+  setSearch,
+}) => {
   const [prodDetail, setprodDetail] = useState([]);
   let { id } = useParams();
   const [Bookmark, setBookmark] = useState(user.favorites);
-
   //
-  // const fetchDetails = async (val) => {
-  //   const url = `${process.env.REACT_APP_URLFETCH}/${val}`;
-  //   try {
-  //     const res = await fetch(url);
-  //     if (res.ok) {
-  //       const data = await res.json();
-  //       console.log(data);
-  //     }
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-  //
-  useEffect(() => {
-    // console.log(data);
-    // fetchDetails(id);
-  }, []);
+  useEffect(() => {}, []);
   useEffect(() => {
     return () => {
       setPicked(null);
@@ -82,6 +79,9 @@ const Details = ({ data, setPicked, user, addFavorite, deleteFavorite }) => {
                     <Link
                       to={`/search?company=${data.company_name}`}
                       className="link linkClr mr-1"
+                      onClick={() =>
+                        setSearch({ type: "company", query: data.company_name })
+                      }
                     >
                       <span>{data.company_name}</span>
                     </Link>
@@ -112,7 +112,12 @@ const Details = ({ data, setPicked, user, addFavorite, deleteFavorite }) => {
                 </span>
                 <span>
                   <small className="text-muted">category: </small>{" "}
-                  <Link to={`/search?category=${data.category}`}>
+                  <Link
+                    to={`/search?category=${data.category}`}
+                    onClick={() =>
+                      setSearch({ type: "category", query: data.category })
+                    }
+                  >
                     {" "}
                     <span className="link linkClr">{data.category}</span>
                   </Link>

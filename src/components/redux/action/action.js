@@ -13,6 +13,7 @@ export const addTheName = (value) => ({
   payload: value,
 });
 
+// SEARCH
 export const setSearch = (value) => {
   return async (dispatch, getState) => {
     dispatch({
@@ -21,6 +22,7 @@ export const setSearch = (value) => {
     });
   };
 };
+// FETCHING
 export const searchBy = (value) => {
   return async (dispatch, getState) => {
     let searchInfo = await getState();
@@ -30,6 +32,10 @@ export const searchBy = (value) => {
       searchInfo.search.page
     );
     try {
+      dispatch({
+        type: "SET_LOADING",
+        payload: true,
+      });
       const res = await fetch(url);
       if (res.ok) {
         const data = await res.json();
@@ -37,8 +43,16 @@ export const searchBy = (value) => {
           type: "SEARCH_DATA",
           payload: data,
         });
+        dispatch({
+          type: "SET_LOADING",
+          payload: false,
+        });
       }
     } catch (error) {
+      dispatch({
+        type: "SET_LOADING",
+        payload: false,
+      });
       console.log(error);
     }
   };

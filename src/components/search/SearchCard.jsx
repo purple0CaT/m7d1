@@ -3,7 +3,7 @@ import { Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import dateFormat from "dateformat";
 
-export default function SearchCard({ data, setPicked }) {
+const SearchCard = ({ data, setPicked }) => {
   return (
     <Col xs="12" md="3" className="my-1">
       <Link
@@ -61,4 +61,5 @@ export default function SearchCard({ data, setPicked }) {
       </Link>
     </Col>
   );
-}
+};
+export default SearchCard;

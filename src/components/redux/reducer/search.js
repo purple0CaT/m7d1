@@ -30,6 +30,11 @@ export const searchReducer = (state = initialState.search, action) => {
         searchQuery: "",
         type: "",
       };
+    case "SET_LOADING":
+      return {
+        ...state,
+        loading: action.payload,
+      };
     default:
       return state;
   }

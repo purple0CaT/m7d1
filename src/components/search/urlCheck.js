@@ -10,7 +10,7 @@ export const urlCheck = (type, query, page) => {
       return (url = url + `&title=${query}`);
       break;
     case "category":
-      return (url = url + `&company=${query}`);
+      return (url = url + `&category=${query}`);
       break;
     default:
       console.log("Switch error");
