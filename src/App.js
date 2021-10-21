@@ -9,28 +9,26 @@ import Home from "./components/home/Home";
 import Details from "./components/details/Details";
 import Favorites from "./components/favorites/Favorites";
 import Profile from "./components/profile/Profile";
+import { connect } from "react-redux";
 
-function App() {
-  const [Search, setSearch] = useState("");
+const mapStateToProps = (state) => ({
+  Search: state.search.searchQuery,
+});
+
+const App = ({ Search }) => {
   const [Picked, setPicked] = useState(null);
 
   useEffect(() => {}, [Search]);
   return (
     <Router className="main">
-      <Navbar setSearch={(val) => setSearch(val)} search={Search} />
+      <Navbar />
       <Switch>
         <Route path="/" exact render={() => <Home />} />
         <Route path="/favorites" exact render={() => <Favorites />} />
         <Route
           path="/search"
           strict
-          render={(props) => (
-            <SearchPage
-              searchQuery={Search}
-              setSearch={(val) => setSearch(val)}
-              setPicked={(val) => setPicked(val)}
-            />
-          )}
+          render={(props) => <SearchPage setPicked={(val) => setPicked(val)} />}
         />
         <Route
           path="/company-detail/:id"
@@ -43,11 +41,7 @@ function App() {
             />
           )}
         />
-        <Route
-          path="/profile"
-          exact
-          render={(routerProps) => <Profile />}
-        />
+        <Route path="/profile" exact render={(routerProps) => <Profile />} />
         <Route
           render={() => (
             <>
@@ -63,6 +57,6 @@ function App() {
       </Switch>
     </Router>
   );
-}
+};
 
-export default App;
+export default connect()(App);

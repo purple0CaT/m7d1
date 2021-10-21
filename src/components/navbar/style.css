@@ -70,7 +70,7 @@
   color: #aaaaaa;
 }
 .navIcon svg:hover {
-  transform: scale(1.2);
+  transform: scale(1.1);
   border-bottom: 2px solid rgb(102, 55, 55);
   border-radius: 2px;
   cursor: pointer;
@@ -78,21 +78,11 @@
   text-decoration: none;
 }
 .navIcon svg:active {
+  color: #d1d1d1 !important;
   transform: scale(1);
   border: 0px solid black;
 }
-/* .profileName {
-  border-radius: 15px;
-  height: 2rem;
-  background-color: #41797980;
-  color: white;
-  border-radius: 15px;
-  margin: 0 0.5rem 0 1rem;
-  border: 1px solid rgba(255, 255, 255, 0.6);
-  padding: 0.1rem 1rem;
-  box-shadow: 0 0 15px white;
-  transition: 0.2s;
-} */
+/* Profile name btn */
 .profileName:hover {
   transform: scale(1.04);
   cursor: pointer;
@@ -102,6 +92,7 @@
   transform: scale(1);
   border: unset;
 }
+/* name input */
 .nameInput {
   height: 2rem !important;
   /* padding: 0 0.2rem !important; */

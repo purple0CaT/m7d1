@@ -8,20 +8,24 @@ import { Col, Container, Form, FormControl, Row } from "react-bootstrap";
 import { Link, NavLink, useHistory } from "react-router-dom";
 import { BsSearch } from "react-icons/bs";
 import { AiFillHome } from "react-icons/ai";
-import { addTheName } from "../redux/action/action";
+import { addTheName, setSearch } from "../redux/action/action";
 //
-const mapStateToProps = (state) => ({ user: state.user });
+const mapStateToProps = (state) => ({ user: state.user, search: state.search });
 const mapDispatchToProps = (dispatch) => ({
   addName: (company) => {
     dispatch(addTheName(company));
+  },
+  setSearch: (query) => {
+    dispatch(setSearch(query));
   },
 });
 //
 const Navbar = ({ search, setSearch, addName, history, user }) => {
   const [userName, setuserName] = useState("");
+  const [SearchVal, setSearchVal] = useState("");
   //
-  const runSearch = (val) => {
-    setSearch(val);
+  const runSearch = async (val) => {
+    setSearch({ query: val, type: "title" });
     if (val & (val !== "undefined") || val !== "") {
       val.length > 2 && history.push("/search");
     } else {
@@ -41,7 +45,7 @@ const Navbar = ({ search, setSearch, addName, history, user }) => {
               <BsSearch className="mx-1" size="1.5rem" />
               {/* <input type="text" name="" id="" placeholder="...search" /> */}
               <Form.Control
-                value={search}
+                value={search.searchQuery}
                 type="text"
                 placeholder="...search"
                 onChange={(e) => {

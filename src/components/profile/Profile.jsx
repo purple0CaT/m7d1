@@ -19,7 +19,7 @@ function Profile({ user, history }) {
           <br />
         </Col>
         <Col xs="12" md="4">
-          <div className="">
+          <div className="text-center">
             <img src={user.image} alt="" className="profileImg" />
           </div>
         </Col>

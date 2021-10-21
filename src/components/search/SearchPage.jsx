@@ -3,74 +3,50 @@ import { Col, Container, Row, Spinner } from "react-bootstrap";
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
 import SearchCard from "./SearchCard";
 import "./style.css";
-import { useLocation } from "react-router-dom";
+import { connect } from "react-redux";
+import { searchBy, setUpPage, cleanUpAct } from "./../redux/action/action";
 
-export default function SearchPage({ searchQuery, setSearch, setPicked }) {
-  const [SearchData, setSearchData] = useState([]);
-  const [Loading, setLoading] = useState(true);
-  const [Page, setPage] = useState(0);
-  const params = useLocation();
-  // URL checker
-  const urlCheck = (query) => {
-    // console.log(query);
-    const params = new URLSearchParams(window.location.search);
-    let skip = Page * 8;
-    let title = query ? `&title=${query}` : "";
-    let company = params.has("company")
-      ? `&company=${params.get("company")}`
-      : "";
-    let category = params.has("category")
-      ? `&category=${params.get("category")}`
-      : "";
-    //
-    let url = `${process.env.REACT_APP_URLFETCH}/jobs?limit=8&skip=${skip}${title}${company}${category}
-    `;
-    return url;
+const mapStateToProps = (state) => ({
+  search: state.search,
+});
+const mapDispatchToProps = (dispatch) => ({
+  searchNow: (query) => {
+    dispatch(searchBy(query));
+  },
+  setPage: (page) => {
+    dispatch(setUpPage(page));
+  },
+  cleanUp: (value) => {
+    dispatch(cleanUpAct(value));
+  },
+});
+
+const SearchPage = ({ search, searchNow, setPage, setPicked, cleanUp }) => {
+  const [Loading, setLoading] = useState(false);
+
+  const nextFetch = async () => {
+    setPage(search.page + 1);
   };
-  // FETCH
-  const searchFetch = async (query) => {
-    let url = urlCheck(query);
-    setLoading(true);
-    try {
-      const res = await fetch(url);
-      if (res.ok) {
-        const data = await res.json();
-        setSearchData(data);
-        setLoading(false);
-      }
-    } catch (error) {
-      console.log(error);
+  const prevFetch = async () => {
+    if (search.page > 0) {
+      setPage(search.page - 1);
     }
   };
   //
-  const nextFetch = async () => {
-    setPage(Page + 1);
-  };
-  const prevFetch = async () => {
-    if (Page > 0) {
-      setPage(Page - 1);
-    }
-  };
-  // renew
-  // useEffect(() => {
-  //   console.log(searchQuery);
-  //   urlCheck(searchQuery);
-  // }, [searchQuery]);
   useEffect(() => {
-    searchFetch(searchQuery);
-  }, [searchQuery, Page]);
+    searchNow();
+  }, [search.searchQuery, search.page]);
   //   clean
   useEffect(() => {
     return () => {
-      setSearch("");
-      setPage(0);
+      cleanUpAct();
     };
   }, []);
   return (
     <Container className="w-100">
       <br />
       <div className="p-2 text-muted d-flex justify-content-between">
-        <h4>...search by: {searchQuery}</h4>
+        <h4>...search by: {search.searchQuery}</h4>
         <div className="d-flex">
           <div
             className="navBtns d-flex justify-content-center align-items-center mr-2"
@@ -97,8 +73,8 @@ export default function SearchPage({ searchQuery, setSearch, setPicked }) {
           </Col>
         ) : (
           <>
-            {SearchData?.data &&
-              SearchData.data.map((cart) => (
+            {search.data.data &&
+              search.data.data.map((cart) => (
                 <SearchCard data={cart} key={cart._id} setPicked={setPicked} />
               ))}
           </>
@@ -106,4 +82,6 @@ export default function SearchPage({ searchQuery, setSearch, setPicked }) {
       </Row>
     </Container>
   );
-}
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SearchPage);
