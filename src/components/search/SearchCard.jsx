@@ -18,7 +18,7 @@ const SearchCard = ({ data, setPicked }) => {
             <div
               className=""
               style={{
-                zIndex: "999",
+                zIndex: "100",
                 position: "absolute",
                 right: "1rem",
                 top: "0.2rem",
@@ -35,10 +35,10 @@ const SearchCard = ({ data, setPicked }) => {
               <BsBookmarkFill
                 size="1.4rem"
                 style={{
-                  zIndex: "999",
+                  zIndex: "100",
                   position: "absolute",
                   right: "1rem",
-                  top: "-0.4rem",
+                  top: "-0.3rem",
                 }}
                 className="bookmark"
               />

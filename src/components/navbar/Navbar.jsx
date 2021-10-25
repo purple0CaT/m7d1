@@ -5,6 +5,7 @@ import { withRouter } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
 import { addTheName, cleanUpAct, setSearch } from "../../redux/action/action";
 import OutsideClickHandler from "react-outside-click-handler";
+import { TransitionGroup } from "react-transition-group";
 
 //
 import {
@@ -112,12 +113,20 @@ const Navbar = ({ history }) => {
                     >
                       <h5 className="my-0">{user.name}</h5>{" "}
                     </NavLink>
-                    {DropDown && (
-                      <NavProf
-                        closeDropdown={closeDropdown}
-                        style={{ transition: "ease-in" }}
-                      />
-                    )}
+                    <TransitionGroup
+                      transitionName="example"
+                      // transitionEnterTimeout={500}
+                      // transitionLeaveTimeout={300}
+                    >
+                      <div className="position-relative">
+                        {DropDown && (
+                          <NavProf
+                            closeDropdown={closeDropdown}
+                            style={{ transition: "ease-in" }}
+                          />
+                        )}
+                      </div>
+                    </TransitionGroup>
                   </OutsideClickHandler>
                 </div>
               </>

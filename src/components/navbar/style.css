@@ -122,9 +122,9 @@
   position: absolute;
   background-color: #fdfdfd !important;
   border-radius: 10px;
-  border-radius: 25px 0px 30px;
+  border-radius: 25px 0px 30px 30px;
   padding: 0.3rem 0.5rem;
-  bottom: -300%;
+  top: 0;
   z-index: 999;
   right: 0;
   box-shadow: 0 5px 10px grey;
