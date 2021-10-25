@@ -97,14 +97,17 @@ const Navbar = ({ history }) => {
                       setDropDown(false);
                     }}
                   >
-                    <div
+                    <NavLink
+                      activeClassName="selectedNavb"
+                      exact
+                      to="/profile"
                       className="navBtn profileName d-flex align-items-center mr-2"
                       onClick={() => setDropDown(!DropDown)}
                       onMouseEnter={() => setDropDown(!DropDown)}
                       onMouseOver={() => setDropDown(true)}
                     >
                       <h5 className="my-0">{user.name}</h5>{" "}
-                    </div>
+                    </NavLink>
                     {DropDown && (
                       <NavProf
                         closeDropdown={closeDropdown}
