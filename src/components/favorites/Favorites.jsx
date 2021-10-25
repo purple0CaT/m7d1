@@ -9,15 +9,6 @@ import "./style.css";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
-// const mapStateToProps = (state) => ({ user: state.user });
-// const mapDispatchToProps = (dispatch) => ({
-//   deleteFavorite: (company) => {
-//     dispatch(deleteOfFavorite(company));
-//   },
-//   setSearchIt: (query) => {
-//     dispatch(setSearch(query));
-//   },
-// });
 function Favorites({ history }) {
   const user = useSelector((state) => state.user);
   const dispatch = useDispatch();

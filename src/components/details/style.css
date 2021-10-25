@@ -8,12 +8,10 @@
   display: inline-block;
   background-color: white;
   color: teal;
-  margin: 0 0.4rem;
   transition: 0.1s;
   border-bottom: 2px solid white;
-}
-.linkClr span {
   margin: 0 0.4rem;
+  padding: 0 0.3rem;
 }
 
 .linkClr:hover {

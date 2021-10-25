@@ -1,45 +1,31 @@
+import "./style.css";
 import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { searchBy, setUpPage, cleanUpAct } from "../../redux/action/action";
 import { Col, Container, Row, Spinner, Alert } from "react-bootstrap";
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
 import SearchCard from "./SearchCard";
-import "./style.css";
-import { connect } from "react-redux";
-import { searchBy, setUpPage, cleanUpAct } from "../../redux/action/action";
 
-const mapStateToProps = (state) => ({
-  search: state.search,
-});
-const mapDispatchToProps = (dispatch) => ({
-  searchNow: (query) => {
-    dispatch(searchBy(query));
-  },
-  setPage: (page) => {
-    dispatch(setUpPage(page));
-  },
-  cleanUp: (value) => {
-    dispatch(cleanUpAct(value));
-  },
-});
-
-const SearchPage = ({ search, searchNow, setPage, setPicked, cleanUp }) => {
-  const [Loading, setLoading] = useState(false);
-
+const SearchPage = ({ setPicked }) => {
+  const search = useSelector((state) => state.search);
+  const dispatch = useDispatch();
+  // next prev
   const nextFetch = async () => {
-    setPage(search.page + 1);
+    dispatch(setUpPage(search.page + 1));
   };
   const prevFetch = async () => {
     if (search.page > 0) {
-      setPage(search.page - 1);
+      dispatch(setUpPage(search.page - 1));
     }
   };
   // RENEW
   useEffect(() => {
-    searchNow();
+    dispatch(searchBy());
   }, [search.searchQuery, search.page]);
   //   CLEAN UP
   useEffect(() => {
     return () => {
-      cleanUp();
+      dispatch(cleanUpAct());
     };
   }, []);
   return (
@@ -88,4 +74,4 @@ const SearchPage = ({ search, searchNow, setPage, setPicked, cleanUp }) => {
   );
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(SearchPage);
+export default SearchPage;

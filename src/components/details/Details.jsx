@@ -64,7 +64,6 @@ const Details = ({ setPicked }) => {
                     company:{" "}
                     <Link
                       to={`/search?company=${data.company_name}`}
-                      className="link linkClr mr-1"
                       onClick={() =>
                         dispatch(
                           setSearch({
@@ -74,7 +73,9 @@ const Details = ({ setPicked }) => {
                         )
                       }
                     >
-                      <span>{data.company_name}</span>
+                      <span className="link linkClr mr-1">
+                        {data.company_name}
+                      </span>
                     </Link>
                     {user?.name &&
                       (!user.favorites.some((c) => c === data.company_name) ? (

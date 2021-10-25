@@ -1,8 +1,9 @@
 import { Container } from "react-bootstrap";
 import { connect } from "react-redux";
-const mapStateToProps = (state) => ({ user: state.user });
+import { useSelector, useDispatch } from "react-redux";
 
-const Home = ({ user }) => {
+const Home = () => {
+  const user = useSelector((state) => state.user);
   return (
     <div>
       <Container>
@@ -13,4 +14,4 @@ const Home = ({ user }) => {
     </div>
   );
 };
-export default connect(mapStateToProps)(Home);
+export default Home;

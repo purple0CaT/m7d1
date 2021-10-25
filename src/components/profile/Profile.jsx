@@ -1,17 +1,15 @@
+import "./style.css";
 import React, { useEffect } from "react";
-import { Col, Container, Row } from "react-bootstrap";
-import { connect } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { setSearch } from "../../redux/action/action";
 import { withRouter } from "react-router";
 import { Link } from "react-router-dom";
-import { setSearch } from "../../redux/action/action";
-import "./style.css";
-const mapStateToProps = (state) => ({ user: state.user });
-const mapDispatchToProps = (dispatch) => ({
-  setSearchIt: (query) => {
-    dispatch(setSearch(query));
-  },
-});
-function Profile({ user, history, setSearchIt }) {
+import { Col, Container, Row } from "react-bootstrap";
+
+function Profile({ history }) {
+  const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  //
   useEffect(() => {
     !user.name && history.push("/");
   }, []);
@@ -42,7 +40,9 @@ function Profile({ user, history, setSearchIt }) {
                     className="link"
                     to={`/search?company=${c}`}
                     className="text-dark"
-                    onClick={() => setSearchIt({ type: "company", query: c })}
+                    onClick={() =>
+                      dispatch(setSearch({ type: "company", query: c }))
+                    }
                   >
                     {" "}
                     {c},
@@ -57,7 +57,4 @@ function Profile({ user, history, setSearchIt }) {
   );
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(withRouter(Profile));
+export default withRouter(Profile);
