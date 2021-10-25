@@ -3,7 +3,7 @@ import React from "react";
 import { useState } from "react";
 import { withRouter } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
-import { addTheName, setSearch } from "../../redux/action/action";
+import { addTheName, cleanUpAct, setSearch } from "../../redux/action/action";
 import OutsideClickHandler from "react-outside-click-handler";
 
 //
@@ -46,7 +46,11 @@ const Navbar = ({ history }) => {
       <Container>
         <Row className="navBar">
           <Col xs="12" md="4" className="d-flex align-items-center my-1">
-            <Link to="/" className="mr-3 navIcon">
+            <Link
+              to="/"
+              className="mr-3 navIcon"
+              onClick={(x) => dispatch(cleanUpAct())}
+            >
               <AiFillHome size="1.8rem" className="" />
             </Link>
             <div className="navSearch">

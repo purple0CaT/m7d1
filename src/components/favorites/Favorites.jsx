@@ -69,7 +69,7 @@ function Favorites({ history }) {
               <div className="my-1" key={f._id + f.company_name}>
                 <div className="favoriteCard d-flex justify-content-between">
                   <Link
-                    to={`/search?company=${f.company_name}`}
+                    to={`/company-detail/${f._id}`}
                     className="link"
                     onClick={() => {
                       dispatch(
@@ -78,9 +78,7 @@ function Favorites({ history }) {
                     }}
                   >
                     <div>
-                      <h6 className="m-0">
-                        <small> title: </small> {f.title}
-                      </h6>
+                      <h6 className="m-0">{f.title}</h6>
                     </div>
                   </Link>
                   <BiTrashAlt

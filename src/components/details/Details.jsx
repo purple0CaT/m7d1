@@ -21,7 +21,9 @@ const Details = ({ setPicked }) => {
   const dispatch = useDispatch();
   let { id } = useParams();
   // DATA
-  const curentData = sData.filter((x) => x._id === id)[0];
+  const curentData =
+    sData.filter((x) => x._id === id)[0] ||
+    user.favoriteJobs.filter((x) => x._id === id)[0];
   // RENEW
   useEffect(() => {
     console.log(sData.filter((x) => x._id === id));
