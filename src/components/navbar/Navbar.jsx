@@ -120,15 +120,6 @@ const Navbar = ({ history }) => {
                     )}
                   </OutsideClickHandler>
                 </div>
-                {/*  */}
-                {/* <DropdownButton
-                  menuAlign="right"
-                  title={user.name}
-                  id="dropdown-menu-align-right"
-                  className="profileName"
-                >
-                  <Dropdown.Item eventKey="1">Action</Dropdown.Item>
-                </DropdownButton> */}
               </>
             )}
           </Col>

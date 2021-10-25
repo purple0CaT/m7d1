@@ -20,6 +20,10 @@ export const deleteFavJob = (value) => ({
   type: "DELETE_JOB",
   payload: value,
 });
+export const logOutUser = (value) => ({
+  type: "LOG_OUT",
+  payload: value,
+});
 
 // SEARCH
 export const setSearch = (value) => {
