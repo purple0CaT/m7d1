@@ -12,6 +12,14 @@ export const addTheName = (value) => ({
   type: "ADD_NAME",
   payload: value,
 });
+export const addFavJob = (value) => ({
+  type: "ADD_JOB",
+  payload: value,
+});
+export const deleteFavJob = (value) => ({
+  type: "DELETE_JOB",
+  payload: value,
+});
 
 // SEARCH
 export const setSearch = (value) => {

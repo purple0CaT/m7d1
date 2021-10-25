@@ -17,6 +17,18 @@ export const userReducer = (state = initialState.user, action) => {
         ...state,
         name: action.payload,
       };
+    case "ADD_JOB":
+      return {
+        ...state,
+        favoriteJobs: [...state.favoriteJobs, action.payload],
+      };
+    case "DELETE_JOB":
+      return {
+        ...state,
+        favoriteJobs: state.favoriteJobs.filter(
+          (f) => f._id !== action.payload._id
+        ),
+      };
     default:
       return state;
   }
