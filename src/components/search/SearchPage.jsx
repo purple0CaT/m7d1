@@ -4,7 +4,7 @@ import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
 import SearchCard from "./SearchCard";
 import "./style.css";
 import { connect } from "react-redux";
-import { searchBy, setUpPage, cleanUpAct } from "./../redux/action/action";
+import { searchBy, setUpPage, cleanUpAct } from "../../redux/action/action";
 
 const mapStateToProps = (state) => ({
   search: state.search,

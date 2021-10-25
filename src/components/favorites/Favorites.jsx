@@ -3,27 +3,32 @@ import { useEffect } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
-import { deleteOfFavorite, setSearch } from "../redux/action/action";
+import { deleteOfFavorite, setSearch } from "../../redux/action/action";
 import { BiTrashAlt } from "react-icons/bi";
 import "./style.css";
 import { Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 
-const mapStateToProps = (state) => ({ user: state.user });
-const mapDispatchToProps = (dispatch) => ({
-  deleteFavorite: (company) => {
-    dispatch(deleteOfFavorite(company));
-  },
-  setSearchIt: (query) => {
-    dispatch(setSearch(query));
-  },
-});
-function Favorites({ user, history, deleteFavorite, setSearchIt }) {
+// const mapStateToProps = (state) => ({ user: state.user });
+// const mapDispatchToProps = (dispatch) => ({
+//   deleteFavorite: (company) => {
+//     dispatch(deleteOfFavorite(company));
+//   },
+//   setSearchIt: (query) => {
+//     dispatch(setSearch(query));
+//   },
+// });
+function Favorites({ history }) {
+  const user = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  //
   useEffect(() => {
     !user.name && history.push("/");
   }, []);
   return (
     <Container>
       <br />
+      <h4 className="text-muted">...favorites:</h4>
       <Row className="mt-3 flex-column">
         {user.favorites.length > 0 ? (
           user.favorites.map((f) => (
@@ -33,7 +38,7 @@ function Favorites({ user, history, deleteFavorite, setSearchIt }) {
                   to={`/search?company=${f}`}
                   className="link"
                   onClick={() => {
-                    setSearchIt({ type: "company", query: f });
+                    dispatch(setSearch({ type: "company", query: f }));
                   }}
                 >
                   <div>
@@ -44,7 +49,7 @@ function Favorites({ user, history, deleteFavorite, setSearchIt }) {
                 </Link>
                 <BiTrashAlt
                   className="delete"
-                  onClick={() => deleteFavorite(f)}
+                  onClick={() => dispatch(deleteOfFavorite(f))}
                 />
               </div>
             </Col>
@@ -60,7 +65,4 @@ function Favorites({ user, history, deleteFavorite, setSearchIt }) {
   );
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(withRouter(Favorites));
+export default withRouter(Favorites);

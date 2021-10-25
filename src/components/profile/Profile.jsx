@@ -3,7 +3,7 @@ import { Col, Container, Row } from "react-bootstrap";
 import { connect } from "react-redux";
 import { withRouter } from "react-router";
 import { Link } from "react-router-dom";
-import { setSearch } from "../redux/action/action";
+import { setSearch } from "../../redux/action/action";
 import "./style.css";
 const mapStateToProps = (state) => ({ user: state.user });
 const mapDispatchToProps = (dispatch) => ({
@@ -31,11 +31,11 @@ function Profile({ user, history, setSearchIt }) {
         <Col xs="12" md="8">
           <div className="profileCard">
             {" "}
-            <h5 className="text-muted">
+            <h5 className="text-muted m-0">
               User Name: <span className="text-dark">{user.name}</span>
             </h5>{" "}
             {user.favorites.length > 0 && (
-              <h6 className="text-muted">
+              <h6 className="text-muted m-0 mt-2">
                 Fav. companies:{" "}
                 {user.favorites.map((c) => (
                   <Link

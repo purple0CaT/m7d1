@@ -1,4 +1,4 @@
-import { urlCheck } from "../../search/urlCheck";
+import { urlCheck } from "../../components/search/urlCheck";
 
 export const addToFavorite = (value) => ({
   type: "ADD_TO_FAV",

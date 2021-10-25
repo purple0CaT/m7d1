@@ -1,45 +1,41 @@
+import "./style.css";
 import React, { useEffect, useState } from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import { useSelector, useDispatch } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import dateFormat from "dateformat";
+import { Container, Row, Col } from "react-bootstrap";
 import { BsBookmark, BsBookmarkFill } from "react-icons/bs";
-import "./style.css";
-import { connect } from "react-redux";
 import {
   addToFavorite,
   deleteOfFavorite,
   setSearch,
-} from "../redux/action/action";
+} from "../../redux/action/action";
 
-const mapStateToProps = (state) => ({
-  user: state.user,
-  sData: state.search.data.data,
-});
-const mapDispatchToProps = (dispatch) => ({
-  addFavorite: (company) => {
-    dispatch(addToFavorite(company));
-  },
-  deleteFavorite: (company) => {
-    dispatch(deleteOfFavorite(company));
-  },
-  setSearch: (query) => {
-    dispatch(setSearch(query));
-  },
-});
+// const mapStateToProps = (state) => ({
+//   user: state.user,
+//   sData: state.search.data.data,
+// });
+// const mapDispatchToProps = (dispatch) => ({
+//   addFavorite: (company) => {
+//     dispatch(addToFavorite(company));
+//   },
+//   deleteFavorite: (company) => {
+//     dispatch(deleteOfFavorite(company));
+//   },
+//   setSearch: (query) => {
+//     dispatch(setSearch(query));
+//   },
+// });
 // JSX
-const Details = ({
-  setPicked,
-  user,
-  addFavorite,
-  deleteFavorite,
-  setSearch,
-  sData,
-}) => {
+const Details = ({ setPicked }) => {
   // CONST
-  const [prodDetail, setprodDetail] = useState([]);
+  const user = useSelector((state) => state.user);
+  const sData = useSelector((state) => state.search.data.data);
+  const dispatch = useDispatch();
+  // const [prodDetail, setprodDetail] = useState([]);
   let { id } = useParams();
-  const [Bookmark, setBookmark] = useState(user.favorites);
-  // DATA 
+  // const [Bookmark, setBookmark] = useState(user.favorites);
+  // DATA
   const data = sData.filter((x) => x._id === id)[0];
   // RENEW
   useEffect(() => {
@@ -88,7 +84,12 @@ const Details = ({
                       to={`/search?company=${data.company_name}`}
                       className="link linkClr mr-1"
                       onClick={() =>
-                        setSearch({ type: "company", query: data.company_name })
+                        dispatch(
+                          setSearch({
+                            type: "company",
+                            query: data.company_name,
+                          })
+                        )
                       }
                     >
                       <span>{data.company_name}</span>
@@ -98,7 +99,9 @@ const Details = ({
                         <div
                           className="bookmark"
                           // value={data.company_name})
-                          onClick={(e) => addFavorite(data.company_name)}
+                          onClick={(e) =>
+                            dispatch(addToFavorite(data.company_name))
+                          }
                         >
                           <BsBookmark />
                         </div>
@@ -106,7 +109,9 @@ const Details = ({
                         <div
                           className="bookmark"
                           // value={data.company_name})
-                          onClick={(e) => deleteFavorite(data.company_name)}
+                          onClick={(e) =>
+                            dispatch(deleteOfFavorite(data.company_name))
+                          }
                         >
                           <BsBookmarkFill />
                         </div>
@@ -123,7 +128,9 @@ const Details = ({
                   <Link
                     to={`/search?category=${data.category}`}
                     onClick={() =>
-                      setSearch({ type: "category", query: data.category })
+                      dispatch(
+                        setSearch({ type: "category", query: data.category })
+                      )
                     }
                   >
                     {" "}
@@ -147,4 +154,4 @@ const Details = ({
   );
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Details);
+export default Details;

@@ -29,6 +29,12 @@ const SearchCard = ({ data, setPicked }) => {
             </div>
             {/* LIST P infos */}
             <small className="text-muted">
+              Category:{" "}
+              <span className="text-dark font-weight-bold">
+                {data.category}
+              </span>
+            </small>
+            <small className="text-muted">
               company:{" "}
               <span className="text-dark font-weight-bold">
                 {data.company_name}

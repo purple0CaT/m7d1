@@ -42,10 +42,12 @@
   color: white;
   transition: 0.1s;
   height: 2rem;
+  border: unset;
 }
 
 .navBtn:hover {
-  transform: scale(1.04);
+  background-color: #aaaaaa !important;
+  transform: scale(1.04) !important;
   border-bottom: 3px solid rgb(102, 55, 55);
   cursor: pointer;
   color: white;
@@ -53,8 +55,9 @@
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.788);
 }
 .navBtn:active {
+  background-color: #aaaaaa !important;
   transform: scale(1);
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.9);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.9) !important;
   border: 0px solid black;
 }
 .selectedNavb {
@@ -83,12 +86,12 @@
   border: 0px solid black;
 }
 /* Profile name btn */
-.profileName:hover {
+.profileName button:hover {
   transform: scale(1.04);
   cursor: pointer;
   border-bottom: 3px solid rgb(102, 55, 55);
 }
-.profileName:active {
+.profileName button:active {
   transform: scale(1);
   border: unset;
 }
@@ -109,4 +112,16 @@
 .separator {
   height: 100%;
   border: 1px solid rgba(128, 128, 128, 0.37);
+}
+
+/*  PRoFILE BUTTON */
+.shortMenu {
+  position: absolute;
+  background-color: #fdfdfd !important;
+  border-radius: 10px;
+  border-radius: 25px 0px 30px;
+  padding: 0.3rem 0.5rem;
+  bottom: -300%;
+  z-index: 999;
+  right: 0;
 }
