@@ -70,7 +70,8 @@
 .navIcon svg {
   transition: 0.1s;
   color: #aaaaaa;
-  border-radius: 40%;
+  border-radius: 50%;
+  border-bottom: 2px solid rgba(0, 255, 34, 0);
 }
 .navIcon svg:hover {
   transform: scale(1.2);
