@@ -10,31 +10,13 @@ import {
   deleteOfFavorite,
   setSearch,
 } from "../../redux/action/action";
-
-// const mapStateToProps = (state) => ({
-//   user: state.user,
-//   sData: state.search.data.data,
-// });
-// const mapDispatchToProps = (dispatch) => ({
-//   addFavorite: (company) => {
-//     dispatch(addToFavorite(company));
-//   },
-//   deleteFavorite: (company) => {
-//     dispatch(deleteOfFavorite(company));
-//   },
-//   setSearch: (query) => {
-//     dispatch(setSearch(query));
-//   },
-// });
 // JSX
 const Details = ({ setPicked }) => {
   // CONST
   const user = useSelector((state) => state.user);
   const sData = useSelector((state) => state.search.data.data);
   const dispatch = useDispatch();
-  // const [prodDetail, setprodDetail] = useState([]);
   let { id } = useParams();
-  // const [Bookmark, setBookmark] = useState(user.favorites);
   // DATA
   const data = sData.filter((x) => x._id === id)[0];
   // RENEW

@@ -1,9 +1,9 @@
-.navBar {
-  padding: 0.2rem 0;
-}
-
 .navContainer {
   background-color: rgba(192, 229, 229, 0.9);
+  box-shadow: 0 0 10px rgba(192, 192, 192, 0.582);
+}
+.navBar {
+  padding: 0.2rem 0;
 }
 .navSearch {
   position: relative;
@@ -66,24 +66,26 @@
 /* NAV ICON */
 .navIcon {
   position: relative;
-  color: #aaaaaa;
 }
 .navIcon svg {
   transition: 0.1s;
   color: #aaaaaa;
+  border-radius: 40%;
 }
 .navIcon svg:hover {
-  transform: scale(1.1);
+  transform: scale(1.2);
   border-bottom: 2px solid rgb(102, 55, 55);
-  border-radius: 2px;
+  border-radius: 3px;
   cursor: pointer;
   color: rgba(71, 71, 71, 0.8) !important;
   text-decoration: none;
 }
 .navIcon svg:active {
-  color: #d1d1d1 !important;
   transform: scale(1);
   border: 0px solid black;
+  color: #aaaaaa !important;
+  border-radius: 25%;
+  /* box-shadow: 0 0 10px rgb(255, 255, 255) !important; */
 }
 /* Profile name btn */
 .profileName button:hover {
@@ -124,4 +126,5 @@
   bottom: -300%;
   z-index: 999;
   right: 0;
+  box-shadow: 0 5px 10px grey;
 }
