@@ -1,33 +1,37 @@
+import { Dispatch } from "redux";
+import { Action } from "redux";
+import { ThunkDispatch } from "redux-thunk";
 import { urlCheck } from "../../components/search/urlCheck";
+import { Job } from "../../types/types";
 
-export const addToFavorite = (value) => ({
+export const addToFavorite = (value: string) => ({
   type: "ADD_TO_FAV",
   payload: value,
 });
-export const deleteOfFavorite = (value) => ({
+export const deleteOfFavorite = (value: string) => ({
   type: "DELETE_OF_FAV",
   payload: value,
 });
-export const addTheName = (value) => ({
+export const addTheName = (value: string) => ({
   type: "ADD_NAME",
   payload: value,
 });
-export const addFavJob = (value) => ({
+export const addFavJob = (value: Job) => ({
   type: "ADD_JOB",
   payload: value,
 });
-export const deleteFavJob = (value) => ({
+export const deleteFavJob = (value: Job) => ({
   type: "DELETE_JOB",
   payload: value,
 });
-export const logOutUser = (value) => ({
+export const logOutUser = () => ({
   type: "LOG_OUT",
-  payload: value,
+  // payload: value,
 });
 
 // SEARCH
-export const setSearch = (value) => {
-  return async (dispatch, getState) => {
+export const setSearch = (value: { type: string; query: string }) => {
+  return async (dispatch: Dispatch, getState: any) => {
     dispatch({
       type: "SEARCH_QUERY",
       payload: value,
@@ -35,8 +39,8 @@ export const setSearch = (value) => {
   };
 };
 // FETCHING
-export const searchBy = (value) => {
-  return async (dispatch, getState) => {
+export const searchBy = () => {
+  return async (dispatch: Dispatch, getState: any) => {
     let searchInfo = await getState();
     let url = urlCheck(
       searchInfo.search.type,
@@ -90,19 +94,19 @@ export const searchBy = (value) => {
   };
 };
 // CHANGE PAGE NUM
-export const setUpPage = (value) => {
-  return async (dispatch, getState) => {
+export const setUpPage = (value: any) => {
+  return async (dispatch: any, getState: any) => {
     dispatch({
       type: "SET_PAGE",
       payload: value,
     });
   };
 };
-export const cleanUpAct = (value) => {
-  return async (dispatch, getState) => {
+export const cleanUpAct = () => {
+  return async (dispatch: any, getState: any) => {
     dispatch({
       type: "CLEAN_UP",
-      payload: value,
+      // payload: value,
     });
   };
 };

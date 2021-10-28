@@ -12,9 +12,12 @@ import { BiTrashAlt } from "react-icons/bi";
 import "./style.css";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import { RouteComponentProps } from "react-router-dom";
+import { ReduxStore } from "../../types/types";
+interface Types extends RouteComponentProps {}
 
-function Favorites({ history }) {
-  const user = useSelector((state) => state.user);
+function Favorites({ history }: Types) {
+  const user = useSelector((state: ReduxStore) => state.user);
   const dispatch = useDispatch();
   //
   useEffect(() => {

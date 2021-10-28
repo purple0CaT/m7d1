@@ -13,20 +13,29 @@ import {
   deleteOfFavorite,
   setSearch,
 } from "../../redux/action/action";
+import { Job, ReduxStore } from "../../types/types";
+import { RouteComponentProps } from "react-router-dom";
+
+//
+interface Types extends RouteComponentProps {
+  setPicked: (v: Job | null) => void;
+  data: Job;
+  // id: "string";
+}
 // JSX
-const Details = ({ setPicked }) => {
+const Details = ({ setPicked, data }: Types) => {
   // CONST
-  const user = useSelector((state) => state.user);
-  const sData = useSelector((state) => state.search.data.data);
+  const user = useSelector((state: ReduxStore) => state.user);
+  const sData = useSelector((state: ReduxStore) => state.search.data.data);
   const dispatch = useDispatch();
-  let { id } = useParams();
+  let { id } = useParams<any>();
   // DATA
-  const curentData =
-    sData.filter((x) => x._id === id)[0] ||
-    user.favoriteJobs.filter((x) => x._id === id)[0];
+  const curentData: Job =
+    sData.filter((x: Job) => x._id === id)[0] ||
+    user.favoriteJobs.filter((x: Job) => x._id === id)[0];
   // RENEW
   useEffect(() => {
-    console.log(sData.filter((x) => x._id === id));
+    // console.log(sData.filter((x) => x._id === id));
   }, []);
   useEffect(() => {
     return () => {

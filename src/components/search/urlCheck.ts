@@ -1,4 +1,4 @@
-export const urlCheck = (type, query, page) => {
+export const urlCheck = (type:string, query:string, page:number) => {
   let skip = page * 8;
   let url = `${process.env.REACT_APP_URLFETCH}/jobs?limit=8&skip=${skip}`;
 

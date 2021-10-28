@@ -10,17 +10,18 @@ import Details from "./components/details/Details";
 import Favorites from "./components/favorites/Favorites";
 import Profile from "./components/profile/Profile";
 import { connect } from "react-redux";
+import { Job } from "./types/types";
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: any) => ({
   Search: state.search.searchQuery,
 });
 
-const App = ({ Search }) => {
-  const [Picked, setPicked] = useState(null);
+const App = ({ Search }: any) => {
+  const [Picked, setPicked] = useState<any>(null);
 
   useEffect(() => {}, [Search]);
   return (
-    <Router className="main">
+    <Router>
       <Navbar />
       <Switch>
         <Route path="/" exact render={() => <Home />} />
@@ -28,7 +29,9 @@ const App = ({ Search }) => {
         <Route
           path="/search"
           strict
-          render={(props) => <SearchPage setPicked={(val) => setPicked(val)} />}
+          render={(props) => (
+            <SearchPage setPicked={(val: any) => setPicked(val)} />
+          )}
         />
         <Route
           path="/company-detail/:id"
@@ -37,7 +40,7 @@ const App = ({ Search }) => {
             <Details
               {...routerProps}
               data={Picked}
-              setPicked={(val) => setPicked(val)}
+              setPicked={(val: Job | null) => setPicked(val)}
             />
           )}
         />

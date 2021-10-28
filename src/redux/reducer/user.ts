@@ -1,6 +1,6 @@
 import { initialState } from "../data/data";
 
-export const userReducer = (state = initialState.user, action) => {
+export const userReducer = (state = initialState.user, action: any) => {
   switch (action.type) {
     case "ADD_TO_FAV":
       return {

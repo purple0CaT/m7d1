@@ -6,9 +6,15 @@ import { addFavJob, deleteFavJob, setSearch } from "../../redux/action/action";
 import { useSelector, useDispatch } from "react-redux";
 import { BiTrashAlt } from "react-icons/bi";
 import { BsBookmark, BsBookmarkFill } from "react-icons/bs";
+import { Job, ReduxStore } from "../../types/types";
 
-const SearchCard = ({ data, setPicked }) => {
-  const user = useSelector((state) => state.user);
+interface Type {
+  data: any;
+  setPicked: (data: Job) => void;
+}
+
+const SearchCard = ({ data, setPicked }: Type) => {
+  const user = useSelector((state: ReduxStore) => state.user);
   const dispatch = useDispatch();
   return (
     <Col xs="12" md="3" className="my-1">
@@ -18,7 +24,7 @@ const SearchCard = ({ data, setPicked }) => {
             <div
               className=""
               style={{
-                zIndex: "100",
+                zIndex: 100,
                 position: "absolute",
                 right: "1rem",
                 top: "0.2rem",
@@ -35,7 +41,7 @@ const SearchCard = ({ data, setPicked }) => {
               <BsBookmarkFill
                 size="1.4rem"
                 style={{
-                  zIndex: "100",
+                  zIndex: 100,
                   position: "absolute",
                   right: "1rem",
                   top: "-0.3rem",

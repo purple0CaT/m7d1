@@ -5,10 +5,12 @@ import thunk from "redux-thunk";
 import localStorage from "redux-persist/es/storage";
 import { persistStore, persistReducer } from "redux-persist";
 import { encryptTransform } from "redux-persist-transform-encrypt";
+import { ReduxStore } from "../../types/types";
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const composeEnhancers =
+  (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-export const initialState = {
+export const initialState: ReduxStore = {
   user: {
     name: "",
     image:
@@ -22,6 +24,7 @@ export const initialState = {
     loading: false,
     data: [],
     page: 0,
+    error: "",
   },
 };
 
@@ -35,7 +38,7 @@ const persistConfigs = {
   storage: localStorage,
   transforms: [
     encryptTransform({
-      secretKey: process.env.REACT_APP_KEYENCRIPTION,
+      secretKey: process.env.REACT_APP_KEYENCRIPTION!,
       onError: function (error) {
         // Handle the error.
       },
@@ -44,11 +47,13 @@ const persistConfigs = {
 };
 
 const persistedReducer = persistReducer(persistConfigs, bigReducer);
-const configureStore = createStore(
+const configureStore: any = createStore(
   persistedReducer,
   initialState,
   composeEnhancers(applyMiddleware(thunk))
 );
 const persistor = persistStore(configureStore);
 
+export type RootState = ReturnType<typeof configureStore.getState>;
+export type AppDispatch = typeof configureStore.dispatch;
 export { configureStore, persistor };

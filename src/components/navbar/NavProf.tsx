@@ -2,8 +2,11 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { cleanUpAct, logOutUser } from "../../redux/action/action";
+interface Types {
+  closeDropdown: () => void;
+}
 
-function NavProf({ closeDropdown }) {
+function NavProf({ closeDropdown }: Types) {
   const dispatch = useDispatch();
   return (
     <div className="shortMenu d-flex flex-column">

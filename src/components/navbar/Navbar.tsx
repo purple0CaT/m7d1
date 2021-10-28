@@ -1,5 +1,5 @@
 import "./style.css";
-import React from "react";
+import React, { FormEvent } from "react";
 import { useState } from "react";
 import { withRouter } from "react-router";
 import { useSelector, useDispatch } from "react-redux";
@@ -21,22 +21,30 @@ import { Link, NavLink, useHistory } from "react-router-dom";
 import { BsSearch } from "react-icons/bs";
 import { AiFillHome } from "react-icons/ai";
 import NavProf from "./NavProf";
-//
+import { RouteComponentProps } from "react-router-dom";
+import { ReduxStore } from "../../types/types";
+import { useAppDispatch } from "../../types/hooks";
+import { EventKey } from "react-bootstrap/esm/types";
 
-const Navbar = ({ history }) => {
-  const [userName, setuserName] = useState("");
-  const user = useSelector((state) => state.user);
-  const search = useSelector((state) => state.search);
+//
+interface Types extends RouteComponentProps {
+  // cleanUpAct: (v: any) => void;
+}
+//
+const Navbar = ({ history }: Types) => {
+  const [userName, setuserName] = useState<string>("");
+  const user = useSelector((state: ReduxStore) => state.user);
+  const search = useSelector((state: ReduxStore) => state.search);
   const dispatch = useDispatch();
   //
   const [DropDown, setDropDown] = useState(false);
   const closeDropdown = () => setDropDown(false);
 
   //
-  const runSearch = async (val) => {
+  const runSearch = async (val: any) => {
     dispatch(setSearch({ query: val, type: "title" }));
-    if (val & (val !== "undefined") || val !== "") {
-      val.length > 2 && history.push("/search");
+    if (val.length > 2) {
+      history.push("/search");
     } else {
       history.push("/");
     }
@@ -87,7 +95,7 @@ const Navbar = ({ history }) => {
                 placeholder="...your name"
                 value={userName}
                 onChange={(e) => setuserName(e.target.value)}
-                onKeyPress={(e) =>
+                onKeyPress={(e: any) =>
                   e.key === "Enter" && dispatch(addTheName(userName))
                 }
               />
@@ -113,20 +121,7 @@ const Navbar = ({ history }) => {
                     >
                       <h5 className="my-0">{user.name}</h5>{" "}
                     </NavLink>
-                    <TransitionGroup
-                      transitionName="example"
-                      // transitionEnterTimeout={500}
-                      // transitionLeaveTimeout={300}
-                    >
-                      <div className="position-relative">
-                        {DropDown && (
-                          <NavProf
-                            closeDropdown={closeDropdown}
-                            style={{ transition: "ease-in" }}
-                          />
-                        )}
-                      </div>
-                    </TransitionGroup>
+                    {DropDown && <NavProf closeDropdown={closeDropdown} />}
                   </OutsideClickHandler>
                 </div>
               </>

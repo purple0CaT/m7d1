@@ -1,9 +1,10 @@
 import { Container } from "react-bootstrap";
 import { connect } from "react-redux";
 import { useSelector, useDispatch } from "react-redux";
+import { ReduxStore } from "../../types/types";
 
 const Home = () => {
-  const user = useSelector((state) => state.user);
+  const user = useSelector((state: ReduxStore) => state.user);
   return (
     <div>
       <Container>

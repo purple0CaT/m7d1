@@ -5,9 +5,15 @@ import { searchBy, setUpPage, cleanUpAct } from "../../redux/action/action";
 import { Col, Container, Row, Spinner, Alert } from "react-bootstrap";
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
 import SearchCard from "./SearchCard";
+import { Job, ReduxStore } from "../../types/types";
 
-const SearchPage = ({ setPicked }) => {
-  const search = useSelector((state) => state.search);
+interface Type {
+  // data: any;
+  setPicked: (data: Job) => void;
+}
+
+const SearchPage = ({ setPicked }: Type) => {
+  const search = useSelector((state: ReduxStore) => state.search);
   const dispatch = useDispatch();
   // next prev
   const nextFetch = async () => {
@@ -58,13 +64,13 @@ const SearchPage = ({ setPicked }) => {
             {search.error}{" "}
           </Alert>
         ) : search.loading ? (
-          <Col xs="12 text-center">
+          <Col xs="12" className="text-center">
             <Spinner animation="border" />
           </Col>
         ) : (
           <>
             {search.data.data &&
-              search.data.data.map((cart) => (
+              search.data.data.map((cart: Job) => (
                 <SearchCard data={cart} key={cart._id} setPicked={setPicked} />
               ))}
           </>

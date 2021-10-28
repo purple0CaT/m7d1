@@ -1,6 +1,6 @@
 import { initialState } from "../data/data";
 
-export const searchReducer = (state = initialState.search, action) => {
+export const searchReducer = (state = initialState.search, action: any) => {
   switch (action.type) {
     case "SEARCH_QUERY":
       return {
